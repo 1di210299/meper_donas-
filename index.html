@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Me perdonas?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(60, 60, 120, 0.12);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            max-width: 480px;
+        }
+        .image-container {
+            margin-bottom: 2rem;
+        }
+        .image-container img {
+            max-width: 250px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.7rem;
+            color: #3b3b5b;
+        }
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: #6b7280;
+            font-weight: 400;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+        button {
+            font-size: 1.3rem;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-si {
+            background: #4ade80;
+            color: #fff;
+        }
+        .btn-si:hover {
+            background: #22c55e;
+            transform: scale(1.08);
+        }
+        .btn-no {
+            background: #f87171;
+            color: #fff;
+        }
+        .btn-no:hover {
+            background: #ef4444;
+            transform: scale(1.08);
+        }
+        .message {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            color: #3b3b5b;
+        }
+        .hearts {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            animation: floatHearts 2s ease-in-out;
+        }
+        .success-message {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            display: block;
+            clear: both;
+        }
+        .success-image {
+            margin-top: 2rem;
+            display: block;
+            clear: both;
+            text-align: center;
+            animation: fadeInSuccess 2s ease-in-out;
+        }
+        .success-image img {
+            max-width: 220px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+        }
+        @keyframes fadeInSuccess {
+            0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+            60% { opacity: 1; transform: scale(1.05) translateY(-5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes floatHearts {
+            0% { opacity: 0; transform: scale(0.5) translateY(40px); }
+            60% { opacity: 1; transform: scale(1.2) translateY(-10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .sad {
+            margin-top: 1.5rem;
+            animation: shakeSad 1.2s;
+        }
+        .sad-gif {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+        }
+        @keyframes shakeSad {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-8px); }
+            80% { transform: translateX(8px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <div class="image-container" id="initial-image">
+            <img src="66a38866cb1c81960fe76c5361b7e559.jpg" alt="Imagen de perdón">
+        </div>
+        <h1>Me per🍩?</h1>
+        <p class="subtitle">Me perdonas?</p>
+        <div class="btn-group">
+            <button class="btn-si" id="btn-si">Sí</button>
+            <button class="btn-no" id="btn-no">No</button>
+        </div>
+        <div class="message" id="message"></div>
+    </div>
+    <script>
+        const btnSi = document.getElementById('btn-si');
+        const btnNo = document.getElementById('btn-no');
+        const message = document.getElementById('message');
+        const initialImage = document.getElementById('initial-image');
+
+        const frases = [
+            '<span class="sad"><img src="moved to tears crying GIF.gif" class="sad-gif" alt="Crying GIF"></span><br>¡Karem, perdón por quedarme dormido!<br>Estaba muy cansado pero quería escucharte',
+            '<span class="sad"><img src="Sad Baby Doll GIF.gif" class="sad-gif" alt="Sad Baby Doll GIF"></span><br>Karem, sé que era importante lo que me contabas<br>¿Me perdonas? Eran las 2:30 AM realmente mori',
+            '<span class="sad"><img src="Sad Baby GIF.gif" class="sad-gif" alt="Sad Baby GIF"></span><br>No era mi intención quedarme dormido<br>Karem, lo que me cuentas me importa mucho',
+            '<span class="sad"><img src="Sad Anthony Anderson GIF.gif" class="sad-gif" alt="Sad Anthony GIF"></span><br>Me siento traste Karem<br>¿Puedes contarme otra vez lo que me decías?',
+            '<span class="sad"><img src="Sad Lilo And Stitch GIF.gif" class="sad-gif" alt="Sad Lilo GIF"></span><br>Karem, prometo que la próxima vez tomaré café<br>No quería hacerte sentir ignorada',
+            '<span class="sad"><img src="moved to tears crying GIF.gif" class="sad-gif" alt="Crying GIF"></span><br>Perdón por dormirme mientras hablabas Karem<br>Era muy tarde y se no era excusa',
+            '<span class="sad"><img src="Sad Baby Doll GIF.gif" class="sad-gif" alt="Sad Baby Doll GIF"></span><br>Karem, me quedé dormido pero te estaba escuchando<br> meper?',
+            '<span class="sad"><img src="Sad Baby GIF.gif" class="sad-gif" alt="Sad Baby GIF"></span><br>Karem, ya nos vemos en una semana<br>Perdón por dormirme, estaba agotado pero quería hablar un rato contigo'
+        ];
+
+
+        let fraseIndex = 0;
+
+        btnSi.onclick = function() {
+            initialImage.style.display = 'none';
+            message.innerHTML = `
+                <div class="hearts">❤️❤️❤️</div>
+                <div class="success-message">
+                    ¡Gracias Karem!<br><br>
+                    la siguiente si vez si pasa me puedes tirar una cashetada 
+                </div>
+                <div class="success-image">
+                    <img src="947c2e206348fea18affbcd2f5c9b3ba.jpg" alt="Imagen de celebración">
+                </div>
+                <div class="success-image" style="margin-top: 1rem;">
+                    <img src="Fuego GIF by Revicheems.gif" alt="Fuego GIF" style="max-width: 150px;">
+                </div>
+            `;
+            btnSi.style.display = 'none';
+            btnNo.style.display = 'none';
+        };
+
+        btnNo.onclick = function() {
+            message.innerHTML = frases[fraseIndex];
+            fraseIndex = (fraseIndex + 1) % frases.length;
+        };
+    </script>
+</body>
+</html>
